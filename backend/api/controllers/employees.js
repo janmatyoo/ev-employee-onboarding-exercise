@@ -6,6 +6,11 @@ function getData() {
     return JSON.parse(rawdata);
 }
 
+function writeData(data) {
+    let newData = JSON.stringify(data, null, "\t");
+    fs.writeFileSync('employees.json', newData);
+}
+
 exports.getAllEmployees = (req, res, next) => {
     let employees = getData()
     res.status(200).json(employees);
@@ -27,9 +32,19 @@ exports.getSpecificEmployee = (req, res, next) => {
     }
 }
 
-exports.add_new_employee = (req, res, next) => {
-    res.status(200).json({
-        message: "Added employee"
+exports.addNewEmployee = (req, res, next) => {
+    let newEmployee = {
+        id: req.body.id,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+    }
+
+    let employees = getData()
+    employees.push(newEmployee);
+    writeData(employees)
+
+    res.status(201).json({
+        message: util.format("Successfully added employee %s %s", newEmployee.first_name, newEmployee.last_name)
     });
 }
 
