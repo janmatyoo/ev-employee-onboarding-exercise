@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const EmployeeController = require('../controllers/employees');
 
-router.get('/', EmployeeController.get_all_employees);
+router.get('/', EmployeeController.getAllEmployees);
 
-router.get('/:id', EmployeeController.get_specific_employee);
+router.get('/:id', EmployeeController.getSpecificEmployee);
 
 router.post('/', EmployeeController.add_new_employee);
 

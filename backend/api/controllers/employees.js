@@ -1,17 +1,30 @@
 const fs = require('fs');
 const util = require('util');
 
-exports.get_all_employees = (req, res, next) => {
+function getData() {
     let rawdata = fs.readFileSync('employees.json');
-    let employees = JSON.parse(rawdata);
+    return JSON.parse(rawdata);
+}
 
+exports.getAllEmployees = (req, res, next) => {
+    let employees = getData()
     res.status(200).json(employees);
 }
 
-exports.get_specific_employee = (req, res, next) => {
-    res.status(200).json({
-        message: "List specific employee"
-    });
+exports.getSpecificEmployee = (req, res, next) => {
+    let id = req.params.id
+
+    let employees = getData()
+    let employee = employees.find(item=>item.id==id);
+
+    if (employee != null) {
+        res.status(200).json(employee);
+    }
+    else {
+        res.status(404).json({
+            message: "Employee not found"
+        });
+    }
 }
 
 exports.add_new_employee = (req, res, next) => {
