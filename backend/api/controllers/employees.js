@@ -70,8 +70,24 @@ exports.updateSelectedEmployee = (req, res, next) => {
     });
 }
 
-exports.delete_selected_employee = (req, res, next) => {
-    res.status(200).json({
-        message: "Deleted employee"
+exports.deleteSelectedEmployee = (req, res, next) => {
+    let id = req.params.id
+
+    let employees = getData()
+    let employee = employees.find(item=>item.id==id);
+    let dataRemoved = employees.filter((el) => {
+        return el.id !== parseInt(id);
     });
+    writeData(dataRemoved)
+
+    if (employee != null) {
+        res.status(200).json({
+            message: util.format("Successfully deleted employee %s %s", employee.first_name, employee.last_name)
+        });
+    }
+    else {
+        res.status(404).json({
+            message: "Employee not found"
+        });
+    }
 }

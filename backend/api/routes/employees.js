@@ -10,6 +10,6 @@ router.post('/', EmployeeController.addNewEmployee);
 
 router.put('/:id', EmployeeController.updateSelectedEmployee);
 
-router.delete('/:id', EmployeeController.delete_selected_employee);
+router.delete('/:id', EmployeeController.deleteSelectedEmployee);
 
 module.exports = router
