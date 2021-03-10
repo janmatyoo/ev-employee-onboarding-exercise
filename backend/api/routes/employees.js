@@ -1,48 +1,15 @@
 const express = require('express');
-const fs = require('fs');
-const util = require('util');
 const router = express.Router();
+const EmployeeController = require('../controllers/employees');
 
-router.get('/', (req, res, next) => {
-    let rawdata = fs.readFileSync('employees.json');
-    let employees = JSON.parse(rawdata);
+router.get('/', EmployeeController.get_all_employees);
 
-    res.status(200).json(employees);
-});
+router.get('/:id', EmployeeController.get_specific_employee);
 
-router.get('/:id', (req, res, next) => {
-    let id = req.params.id
+router.post('/', EmployeeController.add_new_employee);
 
-    let rawdata = fs.readFileSync('employees.json');
-    let employees = JSON.parse(rawdata);
-    let employee = employees.find(item=>item.id==id);
+router.put('/:id', EmployeeController.update_selected_employee);
 
-    if (employee != null) {
-        res.status(200).json(employee);
-    }
-    else {
-        res.status(404).json({
-            message: "Employee not found"
-        });
-    }
-});
-
-router.post('/', (req, res, next) => {
-    res.status(200).json({
-        message: "Added employee"
-    });
-});
-
-router.put('/:id', (req, res, next) => {
-    res.status(200).json({
-        message: "Updated employee"
-    });
-});
-
-router.delete('/:id', (req, res, next) => {
-    ees.status(200).json({
-        message: "Deleted employee"
-    });
-});
+router.delete('/:id', EmployeeController.delete_selected_employee);
 
 module.exports = router
