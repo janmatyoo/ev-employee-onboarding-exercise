@@ -6,7 +6,7 @@ router.get('/', EmployeeController.getAllEmployees);
 
 router.get('/:id', EmployeeController.getSpecificEmployee);
 
-router.post('/', EmployeeController.add_new_employee);
+router.post('/', EmployeeController.addNewEmployee);
 
 router.put('/:id', EmployeeController.update_selected_employee);
 
