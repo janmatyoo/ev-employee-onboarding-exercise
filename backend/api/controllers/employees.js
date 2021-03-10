@@ -48,9 +48,25 @@ exports.addNewEmployee = (req, res, next) => {
     });
 }
 
-exports.update_selected_employee = (req, res, next) => {
+exports.updateSelectedEmployee = (req, res, next) => {
+    let id = req.params.id
+
+    let updatedEmployee = {
+        id: parseInt(id),
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+    }
+
+    let employees = getData()
+    let employeeToDelete = employees.find(item=>item.id==id);
+    let dataRemoved = employees.filter((el) => {
+        return el.id !== parseInt(id);
+    });
+    dataRemoved.push(updatedEmployee);
+    writeData(dataRemoved)
+
     res.status(200).json({
-        message: "Updated employee"
+        message: util.format("Successfully updated employee %s %s", updatedEmployee.first_name, updatedEmployee.last_name)
     });
 }
 
