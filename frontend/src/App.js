@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Table, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label  } from 'reactstrap'
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends Component {
 
