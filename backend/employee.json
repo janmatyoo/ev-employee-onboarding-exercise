@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "first_name": "Matthew",
+        "last_name": "Sarmiento"
+    },
+    {
+        "id": 2,
+        "first_name": "Jin",
+        "last_name": "Kazama"
+    },
+    {
+        "id": 3,
+        "first_name": "Chou",
+        "last_name": "Tzuyu"
+    },
+    {
+        "id": 4,
+        "first_name": "Im",
+        "last_name": "Nayeon"
+    },
+    {
+        "id": 5,
+        "first_name": "Kazuya",
+        "last_name": "Mishima"
+    }
+]
